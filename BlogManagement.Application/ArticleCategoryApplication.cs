@@ -61,6 +61,11 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
         return _articleCategoryRepository.GetAll(searchModel);
     }
 
+    public List<ArticleCategoryViewModel> GetAll()
+    {
+        return _articleCategoryRepository.GetAll();
+    }
+
     public EditArticleCategory GetDetails(long id)
     {
         return _articleCategoryRepository.GetDetails(id);

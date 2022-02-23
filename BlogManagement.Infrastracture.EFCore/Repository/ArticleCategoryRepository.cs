@@ -18,6 +18,16 @@ namespace BlogManagement.Infrastracture.EFCore.Repository
             _context=context;
         }
 
+        public List<ArticleCategoryViewModel> GetAll()
+        {
+            return _context.ArticleCategories.Select(p=> new ArticleCategoryViewModel 
+            {
+                Id=p.Id,
+                Name=p.Name,
+            
+            }).ToList();
+        }
+
         public string GetSlugBy(long CategoruId)
         {
             return _context.ArticleCategories.Select(p => new { p.Id, p.Slug }).FirstOrDefault(p => p.Id == CategoruId).Slug;

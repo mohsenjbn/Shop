@@ -52,7 +52,7 @@ namespace BlogManagement.Application
             return _articleReposirory.GetDetails(Id);
         }
 
-        public OperationResult operationResult(EditArticle command)
+        public OperationResult EditArticle(EditArticle command)
         {
             var Operation = new OperationResult();
             var Article = _articleReposirory.GetArticleAndCategoryBy(command.Id);
