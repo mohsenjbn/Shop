@@ -161,5 +161,29 @@ namespace _01_ShopQuery.Query
 
             return result;
         }
+
+        public List<ProductCategoryQueryModel> GetCategoriesWhitProductForMenu()
+        {
+            var query = _shopContext.productCategories.Include(p => p.Products).Select(p => new ProductCategoryQueryModel
+            {
+                Id=p.Id,
+                Slug=p.Slug,
+                Name=p.Name,
+                Products=MapProductForMenu(p.Products)
+                
+            });
+
+            return query.OrderByDescending(p => p.Id).ToList();
+        }
+
+        private static List<ProductQueryViewModel> MapProductForMenu(List<Product> products)
+        {
+            return products.Select(p => new ProductQueryViewModel
+            {
+                Name=p.Name,
+                Slug=p.Slug,
+                Id=p.Id
+            }).ToList();
+        }
     }
 }

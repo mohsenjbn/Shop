@@ -1,0 +1,20 @@
+﻿@using _01_ShopQuery.Contracts.ArticleCategory
+@model List<ArticleCategoryQueryModel>
+
+
+<div class="single-sidebar-widget">
+
+    <h4 class="single-sidebar-widget__title">گروه مقالات</h4>
+    <ul class="single-sidebar-widget__category-list">
+        @foreach (var item in Model)
+        {
+            <li class="has-children">
+                <a asp-page="/Articles" asp-route-id="@item.Slug">
+                 @item.Name<span class="counter">@item.ArticlesCount</span>
+                </a>
+            </li>
+
+        }
+
+    </ul>
+</div>
