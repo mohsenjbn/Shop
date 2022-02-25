@@ -15,6 +15,11 @@
 
     <meta name="keywords" content="@ViewData["keywords"]" />
     <meta name="description" content="@ViewData["metaDescription"]" />
+    @if (ViewData["canonical"] != null )
+    {
+        <link rel="canonical" href="@ViewData["canonical"]" />
+
+    }
 
     <!-- Vendor CSS -->
     <link href="/Theme/assets/css/vendors.css" rel="stylesheet">
@@ -38,7 +43,7 @@
         </a>
         <div class="search-form">
             <form method="get" asp-page="/ProductSearch">
-                <input type="search"  placeholder="هرچه می خواهید در فروشگاه جستجو کنید ..." value="value" name="value">
+                <input type="search" placeholder="هرچه می خواهید در فروشگاه جستجو کنید ..." name="value">
                 <button type="submit">
                     <i class="ion-android-search"></i>
                 </button>
@@ -48,7 +53,7 @@
 
 
     <div id="scroll-top">
-       <i class="ion-chevron-right"></i> <i class="ion-chevron-right"></i> <span>بازگشت به بالا </span> 
+        <i class="ion-chevron-right"></i> <i class="ion-chevron-right"></i> <span>بازگشت به بالا </span>
     </div>
 
     <script src="/Theme/assets/js/vendors.js"></script>
