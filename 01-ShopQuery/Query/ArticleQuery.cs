@@ -2,11 +2,6 @@
 using _01_ShopQuery.Contracts.Article;
 using BlogManagement.Infrastracture.EFCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _01_ShopQuery.Query
 {
@@ -17,6 +12,20 @@ namespace _01_ShopQuery.Query
         public ArticleQuery(BlogContext blogContext)
         {
             _blogContext = blogContext;
+        }
+
+        public List<ArticleQueryModel>  Search(string Val)
+        {
+           return _blogContext.Articles.Where(p=>p.Title.Contains(Val) || p.KeyWords.Contains(Val) || p.ShortDescribtion.Contains(Val)).Select(p=> new ArticleQueryModel
+           {
+               Title = p.Title,
+               KeyWords = p.KeyWords,
+               ShortDescribtion = p.ShortDescribtion,
+               picture = p.picture,
+               pictureTitle = p.pictureTitle,
+               PictureAlt = p.PictureAlt,
+               Slug = p.Slug
+           }).ToList();
         }
 
         public ArticleQueryModel GetArticleBy(string slug)

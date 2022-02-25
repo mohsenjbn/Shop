@@ -265,7 +265,7 @@
                                             @foreach (var item in Model.Article.KeyWordList)
                                             {
                                                 <li>
-                                                    <a href="#">@item</a>
+                                                    <a asp-page="/SearchArticles" asp-route-id="@item">@item</a>
                                                 </li>
 
                                             }

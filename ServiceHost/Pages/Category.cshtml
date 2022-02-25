@@ -79,7 +79,7 @@
                                                             <span class="sale">-@item.DiscountRate%</span>
                                                         }
                                                     </div>
-                                                    <a href="single-product.html">
+                                                    <a  asp-page="Product" asp-route-id="@item.Slug">
                                                         <img src="/UpdolerFile/@item.Picture" class="img-fluid"
                                                             alt="@item.PictureAlt" title="@item.PictureTitle">
                                                    
@@ -102,7 +102,7 @@
                                                     </div>
 
                                                     <h3 class="single-grid-product__title">
-                                                        <a asp-page="/ProductDetails">@item.Name</a>
+                                                        <a asp-page="Product" asp-route-id="@item.Slug" >@item.Name</a>
                                                     </h3>
                                                     <p class="single-grid-product__price">
                                                         @if(item.Discount)
