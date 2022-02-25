@@ -128,7 +128,10 @@ namespace _01_ShopQuery.Query
                    Id = p.Id,
                    Name = p.Name,
                    Products = MapProducts(p.Products),
-                   Slug=p.Slug
+                   Slug=p.Slug,
+                   KeyWords = p.KeyWords,
+                   MetaDescribtion = p.MetaDescribtion,
+                  
 
                }).FirstOrDefault(p=>p.Slug==value);
 

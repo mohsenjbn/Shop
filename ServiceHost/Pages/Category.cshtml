@@ -1,11 +1,10 @@
 ﻿@page "{id}"
 @model ServiceHost.Pages.CategoryModel
 @{
-    
-    ViewData["title"] = $"{Model.Category.Name} گروه محصولی ";
+    ViewData["Title"] = Model.Category.Name;
+    ViewData["keywords"] = Model.Category.KeyWords;
+    ViewData["metaDescription"] = Model.Category.MetaDescribtion;
 }
-
-
 <div class="breadcrumb-area section-space--half">
     <div class="container wide">
         <div class="row">

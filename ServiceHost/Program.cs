@@ -4,6 +4,8 @@ using DiscountManegmant.Infrastracture.Configoration;
 using InventoryManagement.Infrastracture.Configuration;
 using ServiceHost;
 using ShopManagement.Configuration;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Shop");
@@ -15,6 +17,7 @@ DiscountManagementBootStrapper.configore(builder.Services, ConnectionString);
 InventoryManagementBootstrapper.Configure(builder.Services, ConnectionString);
 BlogManagementBootStrapper.Configure(builder.Services, ConnectionString);
 builder.Services.AddTransient<IFileUploder, FileUploder>();
+builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Arabic));
 var app = builder.Build();
 
 
