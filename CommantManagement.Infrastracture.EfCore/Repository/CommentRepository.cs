@@ -27,7 +27,9 @@ namespace CommantManagement.Infrastracture.EfCore.Repository
                Name=p.Name,
                OwnerRecordId=p.OwnerRecordId,
                Type=p.Type,
-               WebSite=p.WebSite
+               WebSite=p.WebSite,
+               OwnerRecord=p.OwnerRecord,
+              
             });
             
             if(!string.IsNullOrWhiteSpace(searchModel.Name))
@@ -36,6 +38,9 @@ namespace CommantManagement.Infrastracture.EfCore.Repository
 
             if (!string.IsNullOrWhiteSpace(searchModel.Email))
                 query = query.Where(x => x.Email.Contains(searchModel.Email));
+
+            if(searchModel.Type > 0)
+                query=query.Where(p=>p.Type==searchModel.Type);
 
 
             return query.OrderByDescending(x => x.Id).ToList();

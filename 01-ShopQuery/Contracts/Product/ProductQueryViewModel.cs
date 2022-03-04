@@ -1,4 +1,5 @@
-﻿using _01_ShopQuery.Contracts.ProductCategory;
+﻿using _01_ShopQuery.Contracts.Comment;
+using _01_ShopQuery.Contracts.ProductCategory;
 
 namespace _01_ShopQuery.Contracts.Product
 {
@@ -24,6 +25,7 @@ namespace _01_ShopQuery.Contracts.Product
         public string MetaDescribtion { get; set; }
         public long ProductCategoryId { get; set; }
         public string ProductCategorySlug{ get; set; }
+        public List<CommentQyeryModel> Comment { get; set; }
         public List<ProducPictureQueryModel> ProducPictures { get; set; }
 
 

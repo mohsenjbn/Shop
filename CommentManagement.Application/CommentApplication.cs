@@ -19,7 +19,7 @@ namespace CommentManagement.Application
 
             var comment = new Comment(command.Name, command.Email,
                 command.Message, command.WebSite, command.Type,
-                command.OwnerRecordId, command.ParentId);
+                command.OwnerRecordId, command.ParentId,command.OwnerRecord);
 
             _commentRepository.Create(comment);
             _commentRepository.Savechanges();

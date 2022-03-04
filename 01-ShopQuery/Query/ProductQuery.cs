@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using _01_ShopQuery.Contracts.Product;
+using CommantManagement.Infrastracture.EfCore;
 using DiscontManagement.Infrastracture.EfCore;
 using InventoryManagement.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,12 +14,14 @@ namespace _01_ShopQuery.Query
         private readonly ShopContext _shopContext;
         private readonly DiscountContext _discountContext;
         private readonly InventoryContext _inventoryContext;
+        private readonly CommentContext _commentContext;
 
-        public ProductQuery(ShopContext shopContext, DiscountContext discountContext, InventoryContext inventoryContext)
+        public ProductQuery(ShopContext shopContext, DiscountContext discountContext, InventoryContext inventoryContext,CommentContext commentContext)
         {
             _shopContext = shopContext;
             _discountContext = discountContext;
             _inventoryContext = inventoryContext;
+            _commentContext = commentContext;
         }
 
         public ProductQueryViewModel GetProducutBy(string slug)
@@ -26,6 +29,7 @@ namespace _01_ShopQuery.Query
             var inventoryProduct = _inventoryContext.Inventory.Select(p => new { p.ProductId, p.UnitPrice, p.Instock }).ToList();
             var Discount = _discountContext.CustomerDiscounts.Where(p => p.StartDate < DateTime.Now && p.EndDate > DateTime.Now)
                 .Select(c => new { c.ProductId, c.DiscountRate, c.EndDate }).ToList();
+            
 
             var product = _shopContext.Products.Include(p => p.ProductCategory).Include(p => p.ProductPictures).Select(p => new ProductQueryViewModel
             {
@@ -42,7 +46,8 @@ namespace _01_ShopQuery.Query
                 Slug = p.Slug,
                 ProductCategorySlug = p.ProductCategory.Slug,
                 Code = p.Code,
-                ProducPictures = MapProductPictures(p.ProductPictures)
+                ProducPictures = MapProductPictures(p.ProductPictures),
+               
 
             }).FirstOrDefault(p => p.Slug == slug);
 
@@ -73,6 +78,16 @@ namespace _01_ShopQuery.Query
             }
 
 
+            var Comment = _commentContext.Comments.Where(p=>p.Confirm && !p.Cancel).Where(p => p.OwnerRecordId == product.Id).ToList();
+            product.Comment = Comment.Select(p => new Contracts.Comment.CommentQyeryModel
+            {
+                Id = p.Id,
+                Message=p.Message,
+                Name=p.Name,
+                OwnerRecordId=p.OwnerRecordId,
+               CreationDate=p.CreationDate.ToFarsi()
+                
+            }).ToList();
 
             return product;
         }

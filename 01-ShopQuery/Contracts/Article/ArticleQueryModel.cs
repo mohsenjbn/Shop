@@ -1,4 +1,6 @@
-﻿namespace _01_ShopQuery.Contracts.Article
+﻿using _01_ShopQuery.Contracts.Comment;
+
+namespace _01_ShopQuery.Contracts.Article
 {
     public class ArticleQueryModel
     {
@@ -18,6 +20,7 @@
         public long CategoryId { get;  set; }
         public string Category { get;  set; }
         public string CategorySlug { get; set; }
+        public List<CommentQyeryModel> Comments { get; set; }
         public List<string> KeyWordList { get; set; }
     }
 }

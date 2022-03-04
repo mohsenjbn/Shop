@@ -18,7 +18,7 @@
                             <li>
                                 <a asp-page="/Index">صفحه اصلی </a>
                             </li>
-                             <li>
+                            <li>
                                 <a asp-page="/Category" asp-route-id="@Model.product.ProductCategorySlug">@Model.product.Category </a>
                             </li>
                             <li class="active">@Model.product.Name</li>
@@ -41,7 +41,7 @@
 
                                     <div class="product-details-slider-area">
                                         <div class="big-image-wrapper">
-                                     <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--bottom-space ht-slick-slider"
+                                            <div class="product-details-big-image-slider-wrapper product-details-big-image-slider-wrapper--bottom-space ht-slick-slider"
                                                  data-slick-setting='{
                                                     "slidesToShow": 1,
                                                     "slidesToScroll": 1,
@@ -63,13 +63,13 @@
 
                                                 <div class="single-image">
                                                     <img src="~/UpdolerFile/@Model.product.Picture" class="img-fluid"
-                                                         alt="@Model.product.PictureAlt" >
+                                                         alt="@Model.product.PictureAlt">
                                                 </div>
                                                 @foreach (var picture in Model.product.ProducPictures)
                                                 {
-                                                     <div class="single-image">
+                                                    <div class="single-image">
                                                         <img src="~/UpdolerFile/@picture.Picture" class="img-fluid"
-                                                             alt="@picture.pictureAlt" title="@picture.picturetitle">
+                                                         alt="@picture.pictureAlt" title="@picture.picturetitle">
                                                     </div>
                                                 }
                                             </div>
@@ -103,9 +103,9 @@
                                             </div>
                                             @foreach (var picture in Model.product.ProducPictures)
                                             {
-                                                  <div class="single-image">
+                                                <div class="single-image">
                                                     <img src="~/UpdolerFile/@picture.Picture" class="img-fluid"
-                                                         alt="@picture.pictureAlt" title="@picture.picturetitle">
+                                                     alt="@picture.pictureAlt" title="@picture.picturetitle">
                                                 </div>
                                             }
                                         </div>
@@ -115,24 +115,24 @@
 
                                     <div class="single-product-content-description">
                                         <p class="single-info">
-                                             <a asp-page="Category" asp-route-id="@Model.product.ProductCategorySlug">@Model.product.Category</a>
+                                            <a asp-page="Category" asp-route-id="@Model.product.ProductCategorySlug">@Model.product.Category</a>
                                         </p>
                                         <h4 class="product-title">@Model.product.Name</h4>
-                                      @*  <div class="product-rating">
+                                        @*  <div class="product-rating">
                                             <span class="rating">
-                                                <i class="ion-android-star active"></i>
-                                                <i class="ion-android-star active"></i>
-                                                <i class="ion-android-star active"></i>
-                                                <i class="ion-android-star active"></i>
-                                                <i class="ion-android-star-outline"></i>
+                                            <i class="ion-android-star active"></i>
+                                            <i class="ion-android-star active"></i>
+                                            <i class="ion-android-star active"></i>
+                                            <i class="ion-android-star active"></i>
+                                            <i class="ion-android-star-outline"></i>
                                             </span>
 
                                             <span class="review-count">
-                                                <a href="#">(2 reviews)</a> | <a href="#">Write A Review</a>
+                                            <a href="#">(2 reviews)</a> | <a href="#">Write A Review</a>
                                             </span>
-                                        </div>*@
+                                            </div>*@
 
-                                         <p class="single-grid-product__price" style="direction: rtl">
+                                        <p class="single-grid-product__price" style="direction: rtl">
                                             @if (Model.product.Discount)
                                             {
                                                 <span class="main-price discounted">@Model.product.UnitPrice تومان</span>
@@ -145,13 +145,13 @@
 
                                         </p>
 
-                                          
+
                                         </p>
 
                                         <p class="single-info">Product Code: <span class="value">@Model.product.Code</span> </p>
-@*                                        <p class="single-info">Reward Points: <span class="value">200</span> </p>
-*@                                        <p class="single-info">
-                                                @if (Model.product.IsInStock)
+                                        @*                                        <p class="single-info">Reward Points: <span class="value">200</span> </p>
+                                        *@                                        <p class="single-info">
+                                            @if (Model.product.IsInStock)
                                             {
                                                 <span class="text-success">موجود در انبار</span>
                                             }
@@ -162,7 +162,7 @@
                                         </p>
 
                                         <p class="product-description">
-                                         @Model.product.Describtion
+                                            @Model.product.Describtion
                                         </p>
 
                                         <div class="product-countdown" data-countdown="@Model.product.EndDateDiscount"></div>
@@ -175,7 +175,7 @@
 
                                             <div class="product-buttons">
                                                 <a class="cart-btn" href="#">
-                                                    <i class="ion-bag"></i> افزودن سبد خرید 
+                                                    <i class="ion-bag"></i> افزودن سبد خرید
                                                 </a>
                                             </div>
 
@@ -207,13 +207,14 @@
                                             </ul>
                                         </div>
                                         <p class="single-info mb-0">
-                                             <a href="shop-left-sidebar.html">@Model.product.KeyWords</a>
-@*                                             <a href="shop-left-sidebar.html">Ipsum</a>, <a href="shop-left-sidebar.html">Lorem</a>
-*@                                        </p>
+                                            <a href="shop-left-sidebar.html">@Model.product.KeyWords</a>
+                                            @*                                             <a href="shop-left-sidebar.html">Ipsum</a>, <a href="shop-left-sidebar.html">Lorem</a>
+                                            *@
+                                        </p>
 
 
                                     </div>
- 
+
                                 </div>
                             </div>
                         </div>
@@ -230,7 +231,7 @@
                                                    data-toggle="tab" href="#product-description" role="tab"
                                                    aria-selected="true">Description</a>
                                                 <a class="nav-item nav-link" id="review-tab" data-toggle="tab"
-                                                   href="#review" role="tab" aria-selected="false">Reviews (1)</a>
+                                                   href="#review" role="tab" aria-selected="false"> کامنت ها (@Model.product.Comment.Count)</a>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
@@ -240,164 +241,68 @@
 
                                                 <div class="product-description">
                                                     <p>
-                                                     @Model.product.Describtion
+                                                        @Model.product.Describtion
                                                     </p>
 
-                                             
+
                                                 </div>
 
-                         
+
                                             </div>
                                             <div class="tab-pane fade" id="review" role="tabpanel"
                                                  aria-labelledby="review-tab">
 
                                                 <div class="product-rating-wrap">
-                                                    <div class="pro-avg-rating">
-                                                        <h4>4.5 <span>(Overall)</span></h4>
-                                                        <span>Based on 9 Comments</span>
-                                                    </div>
-                                                    <div class="rating-list">
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(3)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(1)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                        <div class="sin-list float-right">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <i class="fa fa-star-o"></i>
-                                                            <span>(0)</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="ratings-wrapper">
 
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Cristopher Lee</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
+                                                    @foreach (var item in Model.product.Comment)
+                                                    {
+                                                        <div class="ratings-wrapper">
+
+                                                            <div class="sin-ratings">
+                                                                <div class="rating-author">
+                                                                    <h3>نام:@item.Name ,(@item.CreationDate)</h3>
+
                                                                 </div>
                                                             </div>
                                                             <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
+                                                                @item.Message
                                                             </p>
                                                         </div>
 
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Rashed Mahmud</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
+                                                    }
 
-                                                        <div class="sin-ratings">
-                                                            <div class="rating-author">
-                                                                <h3>Hasan Mubarak</h3>
-                                                                <div class="rating-star">
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <span>(5)</span>
-                                                                </div>
-                                                            </div>
-                                                            <p>
-                                                                enim ipsam voluptatem quia voluptas sit
-                                                                aspernatur aut odit aut fugit, sed quia res eos
-                                                                qui ratione voluptatem sequi Neque porro
-                                                                quisquam est, qui dolorem ipsum quia dolor sit
-                                                                amet, consectetur, adipisci veli
-                                                            </p>
-                                                        </div>
 
-                                                    </div>
-                                                    <div class="rating-form-wrapper fix">
-                                                        <h3>Add your Comments</h3>
-                                                        <form action="#">
-                                                            <div class="rating-form row">
-                                                                <div class="col-12 mb-15">
-                                                                    <h5>Rating:</h5>
-                                                                    <div class="rating-star fix">
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                        <i class="fa fa-star-o"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-6 col-12 form-group">
-                                                                    <label for="name">Name:</label>
-                                                                    <input id="name" placeholder="Name" type="text">
-                                                                </div>
-                                                                <div class="col-md-6 col-12 form-group">
-                                                                    <label for="email">Email:</label>
-                                                                    <input id="email" placeholder="Email"
-                                                                           type="text">
-                                                                </div>
-                                                                <div class="col-12 form-group">
-                                                                    <label for="your-review">Your Review:</label>
-                                                                    <textarea name="review" id="your-review"
-                                                                              placeholder="Write a review"></textarea>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <input value="add review" type="submit">
-                                                                </div>
+                                                </div>
+
+
+                                                <div class="rating-form-wrapper fix">
+                                                    <h3>افزودن نظر</h3>
+                                                    <form method="post">
+                                                        <div class="rating-form row">
+
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="name">نام:</label>
+                                                                <input name="Name" id="name" placeholder="نام را وارد نمایید" type="text">
                                                             </div>
-                                                        </form>
-                                                    </div>
+                                                            <div class="col-md-6 col-12 form-group">
+                                                                <label for="email">ایمیل:</label>
+                                                                <input name="Email" id="email" placeholder="ایمیل"
+                                                                       type="text">
+                                                            </div>
+                                                            <div class="col-12 form-group">
+                                                                <label for="your-review">متن پیام:</label>
+                                                                <textarea name="Message" id="your-review"
+                                                                          placeholder="نظر خود را وارد نمایید"></textarea>
+                                                            </div>
+                                                            <input type="hidden" name="OwnerRecordId" value="@Model.product.Id" />
+                                                            <input type="hidden" name="OwnerRecord" value="@Model.product.Name" />
+                                                            <input type="hidden" name="productSlug" value="@Model.product.Slug" />
+
+                                                            <div class="col-12">
+                                                                <input value="افزودن نظر" type="submit">
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -410,5 +315,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 

@@ -12,6 +12,7 @@ namespace CommentManagement.Domain.CommentAgg
         public bool Cancel { get; private set; }
         public int Type { get; private set; }
         public long OwnerRecordId { get; private set; }
+        public string OwnerRecord { get;private set; }
         public long ParentId { get; private set; }
         public Comment parent { get; private set; }
 
@@ -20,7 +21,7 @@ namespace CommentManagement.Domain.CommentAgg
 
         }
 
-        public Comment(string name, string email, string message, string webSite, int type, long ownerRecordId, long parentId)
+        public Comment(string name, string email, string message, string webSite, int type, long ownerRecordId, long parentId,string ownerRecord)
         {
             Name = name;
             Email = email;
@@ -29,6 +30,7 @@ namespace CommentManagement.Domain.CommentAgg
             Type = type;
             OwnerRecordId = ownerRecordId;
             ParentId = parentId;
+            OwnerRecord = ownerRecord;  
         }
 
         public void IsConfirm()

@@ -1,6 +1,7 @@
 ﻿using _0_Framework.Application;
 using _01_ShopQuery.Contracts.Article;
 using BlogManagement.Infrastracture.EFCore;
+using CommantManagement.Infrastracture.EfCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace _01_ShopQuery.Query
@@ -8,10 +9,11 @@ namespace _01_ShopQuery.Query
     public class ArticleQuery : IArticleQuery
     {
         private readonly BlogContext _blogContext;
-
-        public ArticleQuery(BlogContext blogContext)
+        private readonly CommentContext _commentContext;
+        public ArticleQuery(BlogContext blogContext, CommentContext commentContext)
         {
             _blogContext = blogContext;
+            _commentContext = commentContext;
         }
 
         public List<ArticleQueryModel>  Search(string Val)
@@ -50,6 +52,34 @@ namespace _01_ShopQuery.Query
             }).FirstOrDefault(p => p.Slug == slug);
 
             Article.KeyWordList = Article.KeyWords.Split(",").ToList();
+
+            var Comment = _commentContext.Comments.Where(p => !p.Cancel && p.Confirm).Where(p=> p.OwnerRecordId==Article.Id).ToList();
+
+           var ArticleComment=Comment.Select(p => new Contracts.Comment.CommentQyeryModel
+            {
+                Id = p.Id,
+                Message = p.Message,
+                Name = p.Name,
+                OwnerRecordId = p.OwnerRecordId,
+                CreationDate = p.CreationDate.ToFarsi(),
+                ParentId = p.ParentId,
+               
+               
+                
+
+            }).OrderByDescending(p=>p.Id).ToList();
+
+            foreach(var item in ArticleComment)
+            {
+                if(item.ParentId > 0)
+                {
+                    item.ParentName= Comment.FirstOrDefault(p=>p.Id==item.ParentId).Name;
+                }
+            }
+
+            Article.Comments = ArticleComment;
+
+
             return Article;
         }
 
