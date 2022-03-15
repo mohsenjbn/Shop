@@ -22,7 +22,7 @@ namespace AccountManagement.Domain.RoleAgg
 
         public void Edit(string name)
         {
-            name = Name;
+            Name = name;
         }
     }
 }

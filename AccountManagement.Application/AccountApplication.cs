@@ -50,6 +50,7 @@ namespace AccountManagement.Application
             var picture = _fileUploder.Upload(command.Profile, path);
 
             var Account=new Account(command.FullName,command.UserName,command.PhoneNumber,password,picture,command.RoleId);
+            _accountRepository.Create(Account);
             _accountRepository.Savechanges();
 
             return operation.IsSucssed();

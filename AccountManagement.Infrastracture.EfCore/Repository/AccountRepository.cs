@@ -27,10 +27,10 @@ namespace AccountManagement.Infrastracture.EfCore.Repository
                 UserName = p.UserName
             });
 
-            if (string.IsNullOrWhiteSpace(accountSearch.UserName))
+            if (!string.IsNullOrWhiteSpace(accountSearch.UserName))
                 query = query.Where(p => p.UserName == accountSearch.UserName);
 
-            if (string.IsNullOrWhiteSpace(accountSearch.FullName))
+            if (!string.IsNullOrWhiteSpace(accountSearch.FullName))
                 query = query.Where(p => p.UserName == accountSearch.FullName);
 
             if (accountSearch.ReleId > 0)

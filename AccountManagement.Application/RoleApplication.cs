@@ -21,6 +21,7 @@ namespace AccountManagement.Application
                 return operation.Failed(ResultMessage.IsDoblicated);
 
             var Role = new Role(command.Name);
+            _roleRepository.Create(Role);
             _roleRepository.Savechanges();
 
             return operation.IsSucssed();

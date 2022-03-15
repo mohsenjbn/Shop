@@ -31,7 +31,10 @@ namespace AccountManagement.Domain.AccountAgg
             UserName = userName;
             PhoneNumber = phoneNumber;
             if (!string.IsNullOrWhiteSpace(profile))
+            {
                 Profile = profile;
+            }
+                
 
             RoleId = roleId;
         }
