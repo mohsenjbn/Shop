@@ -40,6 +40,11 @@ namespace AccountManagement.Infrastracture.EfCore.Repository
 
         }
 
+        public Account GetBy(string username)
+        {
+            return _context.Accounts.Include(p => p.Role).FirstOrDefault(p => p.UserName == username);
+        }
+
         public Edit GetDetails(long Id)
         {
             return _context.Accounts.Include(p => p.Role).Select(p => new Edit

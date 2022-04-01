@@ -11,12 +11,14 @@ namespace AccountManagement.Application
         private readonly IAccountRepository _accountRepository;
         private readonly IFileUploder _fileUploder;
         private readonly IPasswordHashingService _passwordHasher;
+        private readonly IAuthHelper _authHelper;
 
-        public AccountApplication(IAccountRepository accountRepository, IFileUploder fileUploder, IPasswordHashingService passwordHasher)
+        public AccountApplication(IAccountRepository accountRepository, IFileUploder fileUploder, IPasswordHashingService passwordHasher, IAuthHelper authHelper)
         {
             _accountRepository = accountRepository;
             _fileUploder = fileUploder;
             _passwordHasher = passwordHasher;
+            _authHelper = authHelper;
         }
 
         public OperationResult ChanagePassword(ChangePassword command)
@@ -83,6 +85,35 @@ namespace AccountManagement.Application
         public Edit GetDetails(long Id)
         {
            return _accountRepository.GetDetails(Id);
+        }
+
+        public OperationResult Login(Login command)
+        {
+            var operation = new OperationResult();
+            var account = _accountRepository.GetBy(command.Username);
+            if (account == null)
+                return operation.Failed(ResultMessage.WrongRegisteOrLogin);
+            
+            var password=_passwordHasher.VerifyHashedPassword(account.PassWord,command.Password);
+            if(password!=true)
+            {
+                return operation.Failed(ResultMessage.WrongRegisteOrLogin);
+
+            }
+
+            var authModel = new AuthviewModel(account.Id, account.FullName, account.UserName, account.PhoneNumber, account.RoleId, account.Role.Name);
+            _authHelper.Singin(authModel);
+
+            return operation.IsSucssed();
+        }
+
+        public OperationResult Logout()
+        {
+            var operation = new OperationResult();
+            _authHelper.Singout();
+
+          return  operation.IsSucssed();
+            
         }
     }
 }

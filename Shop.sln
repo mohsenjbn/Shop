@@ -107,15 +107,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AM.Application", "AM.Applic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AM.Infrastracture", "AM.Infrastracture", "{7CF42C15-E45D-4300-9420-A1C797154275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Domain", "AccountManagement.Domain\AccountManagement.Domain.csproj", "{F72CAA81-FF18-42BB-A343-73246A93175E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Domain", "AccountManagement.Domain\AccountManagement.Domain.csproj", "{F72CAA81-FF18-42BB-A343-73246A93175E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Application", "AccountManagement.Application\AccountManagement.Application.csproj", "{02070008-3F80-41FA-B2CB-903A90BF7757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Application", "AccountManagement.Application\AccountManagement.Application.csproj", "{02070008-3F80-41FA-B2CB-903A90BF7757}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Application.Contracts", "AccountManagement.Application.Contracts\AccountManagement.Application.Contracts.csproj", "{2396B35A-6D7F-4922-8F73-F9C3EB9CCC20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Application.Contracts", "AccountManagement.Application.Contracts\AccountManagement.Application.Contracts.csproj", "{2396B35A-6D7F-4922-8F73-F9C3EB9CCC20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Infrastracture.EfCore", "AccountManagement.Infrastracture.EfCore\AccountManagement.Infrastracture.EfCore.csproj", "{B1375DC9-F8EC-4A6C-B871-4FA2C7611EE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Infrastracture.EfCore", "AccountManagement.Infrastracture.EfCore\AccountManagement.Infrastracture.EfCore.csproj", "{B1375DC9-F8EC-4A6C-B871-4FA2C7611EE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountManagement.Configuration", "AccountManagement.Configuration\AccountManagement.Configuration.csproj", "{46BFFE53-9F7D-4320-8EE5-25302CE22111}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AccountManagement.Configuration", "AccountManagement.Configuration\AccountManagement.Configuration.csproj", "{46BFFE53-9F7D-4320-8EE5-25302CE22111}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

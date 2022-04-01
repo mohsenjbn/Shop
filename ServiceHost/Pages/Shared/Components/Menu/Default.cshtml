@@ -1,4 +1,6 @@
 ﻿@using _01_ShopQuery.Contracts
+@using _01_framework.Application
+@inject IAuthHelper _authhelper
 @model Menu
 
 <div class="header-area header-sticky">
@@ -50,17 +52,28 @@
                                         @foreach (var item in Model.AericaleCatagories)
                                         {
                                             <li>
-                                                <a asp-page="/Articles" asp-route-id="@item.Slug" >@item.Name</a>
+                                                <a asp-page="/Articles" asp-route-id="@item.Slug">@item.Name</a>
                                             </li>
                                         }
 
 
                                     </ul>
                                 </li>
+                                @if (_authhelper.IsAuthenticated())
+                                {
+                                    <li>
+                                        <a asp-page="/Account" asp-page-handler="Singout">خروج</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a asp-page="/Account">ورود</a>
+                                    </li>
 
-                                <li>
-                                    <a href="contact.html">تماس با ما</a>
-                                </li>
+                                }
+
+
                             </ul>
                         </nav>
                     </div>
@@ -199,7 +212,7 @@
 
 
                                 <li>
-                                    <a asp-page="/Articles" asp-route-id="@item.Slug" >@item.Name</a>
+                                    <a asp-page="/Articles" asp-route-id="@item.Slug">@item.Name</a>
                                 </li>
 
                             }
@@ -224,7 +237,7 @@
                                 </li>
                             </ul>
                         </li>
-                
+
                     </ul>
                 </nav>
             </div>
