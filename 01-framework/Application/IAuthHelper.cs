@@ -5,5 +5,7 @@
         bool IsAuthenticated();
         void Singin(AuthviewModel model);
         void Singout();
+        string GetCurrentRoleId();
+        AuthviewModel GetCurrentUserInfo();
     }
 }

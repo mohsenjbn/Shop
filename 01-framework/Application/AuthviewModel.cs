@@ -9,6 +9,10 @@
         public long RoleId { get; set; }
         public string Role { get; set; }
 
+        public AuthviewModel()
+        {
+
+        }
         public AuthviewModel(long id, string name, string userName, string phoneNumber, long roleId, string role)
         {
             Id = id;
