@@ -1,8 +1,9 @@
-﻿using _0_Framework.Application;
-using _01_framework.Application;
+﻿using _01_framework.Application;
 using _01_framework.Application.PasswordHashing.PasswordHashingService;
 using AccountManagement.Application.Contracts.Account;
+using AccountManagement.Application.Contracts.Role;
 using AccountManagement.Domain.AccountAgg;
+using AccountManagement.Domain.RoleAgg;
 
 namespace AccountManagement.Application
 {
@@ -12,13 +13,15 @@ namespace AccountManagement.Application
         private readonly IFileUploder _fileUploder;
         private readonly IPasswordHashingService _passwordHasher;
         private readonly IAuthHelper _authHelper;
+        private readonly IRoleRepository _rolerepository;
 
-        public AccountApplication(IAccountRepository accountRepository, IFileUploder fileUploder, IPasswordHashingService passwordHasher, IAuthHelper authHelper)
+        public AccountApplication(IAccountRepository accountRepository, IFileUploder fileUploder, IPasswordHashingService passwordHasher, IAuthHelper authHelper, IRoleRepository roleRepository)
         {
             _accountRepository = accountRepository;
             _fileUploder = fileUploder;
             _passwordHasher = passwordHasher;
             _authHelper = authHelper;
+            _rolerepository = roleRepository;
         }
 
         public OperationResult ChanagePassword(ChangePassword command)
@@ -40,7 +43,7 @@ namespace AccountManagement.Application
 
         }
 
-        public OperationResult CreateAccount(Create command)
+        public OperationResult CreateAccount(Contracts.Account.Create command)
         {
             var operation = new OperationResult();
 
@@ -58,7 +61,7 @@ namespace AccountManagement.Application
             return operation.IsSucssed();
         }
 
-        public OperationResult EditAccount(Edit command)
+        public OperationResult EditAccount(Contracts.Account.Edit command)
         {
             var operation = new OperationResult();
             var account=_accountRepository.GetBy(command.Id);
@@ -82,7 +85,7 @@ namespace AccountManagement.Application
            return _accountRepository.GetAccounts(accountSearch);
         }
 
-        public Edit GetDetails(long Id)
+        public Contracts.Account.Edit GetDetails(long Id)
         {
            return _accountRepository.GetDetails(Id);
         }
@@ -100,8 +103,8 @@ namespace AccountManagement.Application
                 return operation.Failed(ResultMessage.WrongRegisteOrLogin);
 
             }
-
-            var authModel = new AuthviewModel(account.Id, account.FullName, account.UserName, account.PhoneNumber, account.RoleId, account.Role.Name);
+            var Promissions=_rolerepository.GetBy(account.RoleId).Permossions.Select(p=>p.Code).ToList();
+            var authModel = new AuthviewModel(account.Id, account.FullName, account.UserName, account.PhoneNumber, account.RoleId, account.Role.Name,Promissions);
             _authHelper.Singin(authModel);
 
             return operation.IsSucssed();

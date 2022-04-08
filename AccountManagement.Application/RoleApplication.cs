@@ -20,7 +20,7 @@ namespace AccountManagement.Application
             if (_roleRepository.IsExist(p => p.Name == command.Name))
                 return operation.Failed(ResultMessage.IsDoblicated);
 
-            var Role = new Role(command.Name);
+            var Role = new Role(command.Name,new List<Permossion>() );
             _roleRepository.Create(Role);
             _roleRepository.Savechanges();
 
@@ -35,8 +35,9 @@ namespace AccountManagement.Application
                 return operation.Failed(ResultMessage.IsNotExistRecord);
             if (_roleRepository.IsExist(p => p.Name == command.Name && p.Id != command.Id))
                 return operation.Failed(ResultMessage.IsDoblicated);
-
-            role.Edit(command.Name);
+            var permissions = new List<Permossion>();
+            command.Permissions.ForEach(Code => permissions.Add(new Permossion(Code)));
+            role.Edit(command.Name, permissions);
             _roleRepository.Savechanges();
 
             return operation.IsSucssed();

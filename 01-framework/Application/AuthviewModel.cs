@@ -8,12 +8,13 @@
         public string PhoneNumber { get; set; }
         public long RoleId { get; set; }
         public string Role { get; set; }
+        public List<int> Promissions { get; set; }
 
         public AuthviewModel()
         {
 
         }
-        public AuthviewModel(long id, string name, string userName, string phoneNumber, long roleId, string role)
+        public AuthviewModel(long id, string name, string userName, string phoneNumber, long roleId, string role, List<int> promissions )
         {
             Id = id;
             Name = name;
@@ -21,6 +22,8 @@
             PhoneNumber = phoneNumber;
             RoleId = roleId;
             Role = role;
+            Promissions = promissions;
+
         }
     }
 }

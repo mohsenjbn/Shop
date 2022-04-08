@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Security.Claims;
 
 namespace _01_framework.Application
@@ -14,6 +16,17 @@ namespace _01_framework.Application
             _contextAccessor = contextAccessor;
         }
 
+        public List<int> GetCurrentPermissions()
+        {
+            if(!IsAuthenticated())
+                return new List<int>();
+
+            var Permissions=_contextAccessor.HttpContext.User.Claims.FirstOrDefault(p=>p.Type=="Permissions")?.Value;
+            return JsonConvert.DeserializeObject<List<int>>(Permissions);
+
+
+        }
+
         public string GetCurrentRoleId()
         {
             if (IsAuthenticated())
@@ -25,6 +38,7 @@ namespace _01_framework.Application
         public AuthviewModel GetCurrentUserInfo()
         {
             var result = new AuthviewModel();
+
             if(IsAuthenticated())
             {
                 var User = _contextAccessor.HttpContext.User.Claims.ToList();
@@ -41,13 +55,14 @@ namespace _01_framework.Application
 
         public bool IsAuthenticated()
         {
-           var claims= _contextAccessor.HttpContext.User.Claims.ToList();
+            return _contextAccessor.HttpContext.User.Identity.IsAuthenticated;
+           //var claims= _contextAccessor.HttpContext.User.Claims.ToList();
 
-            return claims.Count > 0;
+           // return claims.Count > 0;
         }
 
         public void Singin(AuthviewModel model)
-        {
+        {   var Permissions=JsonConvert.SerializeObject(model.Promissions);
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, model.Name),
@@ -55,7 +70,8 @@ namespace _01_framework.Application
                 new Claim("UserName", model.UserName),
                 new Claim("AccountId", model.Id.ToString()),
                 new Claim(ClaimTypes.Role,model.RoleId.ToString()),
-                new Claim("Role",model.Role)
+                new Claim("Role",model.Role),
+                new Claim("Permissions",Permissions)
 
             };
 

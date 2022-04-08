@@ -7,5 +7,6 @@
         void Singout();
         string GetCurrentRoleId();
         AuthviewModel GetCurrentUserInfo();
+        List<int> GetCurrentPermissions();  
     }
 }

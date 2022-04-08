@@ -1,4 +1,5 @@
 ﻿@page
+@using ShopManagement.Configuration.Permissions
 @model ServiceHost.Areas.Adminstarator.Pages.Shop.Product.IndexModel
 @{
 }
@@ -25,7 +26,7 @@
                 <h3 class="panel-title">جستجو در گروه محصولات</h3>
             </div>
             <div class="panel-body">
-     <form class="form-inline" role="form" method="get">
+                <form class="form-inline" role="form" method="get">
                     <div class="form-group">
                         <label class="sr-only" asp-for="search.Name"></label>
                         <input class="form-control" asp-for="search.Name" placeholder="نام محصول">
@@ -65,7 +66,7 @@
                                     <th>نام</th>
                                     <th>گروه محصول</th>
                                     <th>کد محصول</th>
-                        
+
                                     <th>تاریخ تولید</th>
                                     <th>عملیات</th>
                                 </tr>
@@ -85,7 +86,7 @@
                                         <th>@item.CreationDate</th>
 
                                         <td>
-                                            <a class="btn btn-warning pull-right m-rl-5"
+                                            <a Permission="@ShopPermission.EditProduct" class="btn btn-warning pull-right m-rl-5"
                                            href="#showmodal=@Url.Page("./Index", "Edit", new { id = item.Id})">
                                                 <i class="fa fa-edit"></i> ویرایش
                                             </a>

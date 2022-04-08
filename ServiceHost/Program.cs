@@ -15,7 +15,8 @@ using System.Text.Unicode;
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Shop");
 // Add services to the container.
-builder.Services.AddRazorPages()
+builder.Services.AddRazorPages().
+    AddMvcOptions(option=>option.Filters.Add<SecurityPageFilter>())
     .AddRazorPagesOptions(options =>
 {
     options.Conventions.AuthorizeAreaFolder("Adminstarator", "/", "AdminArea");

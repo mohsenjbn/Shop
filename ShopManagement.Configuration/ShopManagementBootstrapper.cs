@@ -1,4 +1,5 @@
-﻿using _01_ShopQuery.Contracts.Product;
+﻿using _01_framework.Infrastracture;
+using _01_ShopQuery.Contracts.Product;
 using _01_ShopQuery.Contracts.ProductCategory;
 using _01_ShopQuery.Contracts.Slide;
 using _01_ShopQuery.Query;
@@ -10,6 +11,7 @@ using ShopManagement.Application;
 using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Application.Contracts.Slide;
+using ShopManagement.Configuration.Permissions;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Domain.SlideAgg;
@@ -30,6 +32,7 @@ namespace ShopManagement.Configuration
             service.AddTransient<IProductPictureApplication, ProductPictureApplication>();
             service.AddTransient<ISlideApplication, SlideApplication>();
             service.AddTransient<ISlideRepository, SlideRepository>();
+            service.AddTransient<IPermissionExposer, ShopPermissionExposer>();
 
 
 
