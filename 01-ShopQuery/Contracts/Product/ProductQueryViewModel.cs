@@ -12,6 +12,7 @@ namespace _01_ShopQuery.Contracts.Product
         public string PictureAlt { get; set; }
         public string PictureTitle { get; set; }
         public string UnitPrice { get; set; }
+        public double DoublePrice { get; set; }
         public string PriceWithDiscoint { get; set; }
         public int DiscountRate { get; set; }
         public string Slug { get; set; }

@@ -58,7 +58,9 @@ namespace _01_ShopQuery.Query
             if (inventory != null)
             {
                 var price = inventory.UnitPrice;
+                
                 product.UnitPrice = price.ToMoney();
+                product.DoublePrice=price;
                 if (inventory.Instock)
                 {
                     product.IsInStock = true;
