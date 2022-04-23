@@ -1,3 +1,4 @@
+using _01_ShopQuery.Contracts.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Nancy.Json;
@@ -7,22 +8,33 @@ namespace ServiceHost.Pages
 {
     public class CartModel : PageModel
     {
-        public List<CartItem> cartItems = new List<CartItem>();
+        public List<CartItem> CartItems;
+         private readonly IProductQuery _productQuery;
+
+         public CartModel(IProductQuery productQuery)
+         {
+             CartItems = new List<CartItem>();
+             _productQuery = productQuery;
+         }
+
+         public List<CartItem> cartItems = new List<CartItem>();
         public void OnGet()
         {
 
             var serializer = new JavaScriptSerializer();
             var CartItems = Request.Cookies["cart-items"];
-            cartItems = serializer.Deserialize<List<CartItem>>(CartItems);
-            if (cartItems.Count == 0)
+            var Items = serializer.Deserialize<List<CartItem>>(CartItems);
+            if (Items.Count == 0)
             {
                 Response.Cookies.Delete("cart-items");
 
             }
-            foreach (var item in cartItems)
+            foreach (var item in Items)
             {
                 item.ToTalPrice = item.UnitPrice * item.Count;
             }
+
+            cartItems = _productQuery.CheckInStock(Items);
 
 
         }
@@ -46,6 +58,26 @@ namespace ServiceHost.Pages
             Response.Cookies.Append("cart-items", serializer.Serialize(value), options);
             return RedirectToPage("./Cart");
 
+        }
+
+        public IActionResult OnGetGoToCheckOut()
+        {
+            var serializer = new JavaScriptSerializer();
+            var CartItems = Request.Cookies["cart-items"];
+            var Items = serializer.Deserialize<List<CartItem>>(CartItems);
+            if (Items.Count == 0)
+            {
+                Response.Cookies.Delete("cart-items");
+
+            }
+            foreach (var item in Items)
+            {
+                item.ToTalPrice = item.UnitPrice * item.Count;
+            }
+
+            cartItems = _productQuery.CheckInStock(Items);
+
+            return RedirectToPage(cartItems.Any(p => !p.IsInStock) ? "./Cart" : "./CheckOut");
         }
     }
 }

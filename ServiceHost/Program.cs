@@ -1,4 +1,3 @@
-using _0_Framework.Application;
 using _01_framework.Application;
 using _01_framework.Application.PasswordHashing.PasswordHashingService;
 using AccountManagement.Configuration;
@@ -11,6 +10,9 @@ using ServiceHost;
 using ShopManagement.Configuration;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using _01_framework.Application.Zarinpal;
+using ShopManagement.Domain.Services;
+using ShopManagement.Infarstracture.Acl;
 
 var builder = WebApplication.CreateBuilder(args);
 var ConnectionString = builder.Configuration.GetConnectionString("Shop");
@@ -36,6 +38,8 @@ AccountManagementBootstrapper.Configure(builder.Services, ConnectionString);
 
 builder.Services.AddTransient<IFileUploder, FileUploder>();
 builder.Services.AddTransient<IAuthHelper, AuthHelper>();
+builder.Services.AddTransient<IZarinpalFactory, ZarinpalFactory>();
+builder.Services.AddTransient<IShopInventoryAcl, ShopInventoryAcl>();
 
 builder.Services.Configure<CookiePolicyOptions>(options =>
 {

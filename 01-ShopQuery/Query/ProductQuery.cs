@@ -4,6 +4,7 @@ using CommantManagement.Infrastracture.EfCore;
 using DiscontManagement.Infrastracture.EfCore;
 using InventoryManagement.Infrastructure.EfCore;
 using Microsoft.EntityFrameworkCore;
+using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Infrastracture.EfCore;
 
@@ -148,6 +149,26 @@ namespace _01_ShopQuery.Query
             }
 
             return Products;
+        }
+
+        public List<CartItem> CheckInStock(List<CartItem> cartItems)
+        {
+            var inventory = _inventoryContext.Inventory.ToList();
+
+            foreach (var item in cartItems)
+            {
+                var ItemInventory = inventory.FirstOrDefault(p => p.ProductId == item.Id && p.Instock);
+                if (ItemInventory !=null)
+                {
+                    item.IsInStock = ItemInventory.CurrentCountInventory() >= item.Count;
+                }
+                else
+                {
+                    item.IsInStock = false;
+                }
+            }
+
+            return cartItems;
         }
 
         public List<ProductQueryViewModel> Search(string val)

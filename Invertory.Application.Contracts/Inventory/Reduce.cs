@@ -14,6 +14,18 @@ namespace Invertory.Application.Contracts.Inventory
         [Required(ErrorMessage = ValidationMessages.IsRequired)]
         public string Describtion { get; set; }
         public long OrderId { get; set; }
+
+        public Reduce()
+        {
+            
+        }
+        public Reduce(long productId,long count,string describtion,long orderid)
+        {
+            ProductId = productId;
+            Count = count;
+            Describtion = describtion;
+            OrderId = orderid;
+        }
     }
 
 }

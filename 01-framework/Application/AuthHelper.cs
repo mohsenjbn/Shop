@@ -27,6 +27,14 @@ namespace _01_framework.Application
 
         }
 
+        public long GetCurrentAccountId()
+        {
+            if (IsAuthenticated())
+                return long.Parse( _contextAccessor.HttpContext.User.Claims.FirstOrDefault(p => p.Type == "AccountId").Value);
+
+            return 0;
+        }
+
         public string GetCurrentRoleId()
         {
             if (IsAuthenticated())

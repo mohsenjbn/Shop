@@ -30,7 +30,11 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-wrapper">
-
+                    
+                    @foreach (var item in Model.cartItems.Where(p => !p.IsInStock))
+                    {
+                        <div class="alert alert-info">محصول @item.Name از تعداد درخواستی شما در انبار کم تر است</div>
+                    }
                   
 
                     <div class="page-content-wrapper">
@@ -63,11 +67,11 @@
                                             </td>
                                             <td class="pro-quantity">
                                                 <div class="quantity-selection">
-                                                    <input type="number" value="@item.Count" min="1" >
+                                                    <input type="number" value="@item.Count" min="1" onchange="ChangeCartCount('@item.Id','TotalPrice-@item.Id',this.value)" >
                                                 </div>
                                             </td>
                                             <td class="pro-subtotal">
-                                                <span id="">@item.ToTalPrice</span>
+                                                <span id="TotalPrice-@item.Id">@item.ToTalPrice</span>
                                             </td>
                                             <td class="pro-remove">
                                                 <a asp-page-handler="RemoveFromCart" asp-route-id="@item.Id">

@@ -1,5 +1,6 @@
 ﻿using _0_Framework.Application;
 using _01_framework.Infrastracture;
+using AccountManagement.Infrastracture.EfCore;
 using InventoryManagement.Domain.InventoryAgg;
 using Invertory.Application.Contracts.Inventory;
 using ShopManagement.Infrastracture.EfCore;
@@ -9,11 +10,13 @@ namespace InventoryManagement.Infrastructure.EfCore.Repository
     public class InventoryRepository : RepositoryBase<long, Inventory>, IInventoryRepository
     {
         private readonly InventoryContext _inventoryContext;
+        private readonly AccountContext _accountContext;
         private readonly ShopContext _shopContext;
 
-        public InventoryRepository(InventoryContext inventoryContext, ShopContext shopContext) : base(inventoryContext)
+        public InventoryRepository(InventoryContext inventoryContext, ShopContext shopContext,AccountContext accountContext) : base(inventoryContext)
         {
             _shopContext = shopContext;
+            _accountContext = accountContext;
             _inventoryContext = inventoryContext;
         }
 
@@ -61,7 +64,8 @@ namespace InventoryManagement.Infrastructure.EfCore.Repository
         public List<InventoryOperationViewModel> InventoryOperations(long InventoryId)
         {
             var Inventory=_inventoryContext.Inventory.FirstOrDefault(p=>p.Id == InventoryId);
-            return Inventory.Operations.Select(p => new InventoryOperationViewModel
+            var account = _accountContext.Accounts.Select(p => new { p.Id, p.FullName });
+            var result= Inventory.Operations.Select(p => new InventoryOperationViewModel
             {
                 Id=p.Id,
                 Count=p.Count,
@@ -72,9 +76,19 @@ namespace InventoryManagement.Infrastructure.EfCore.Repository
                 Operation=p.Operation,
                 OperatorId=p.OperatorId,
                 OrderId=p.OrderId,
-               Operator="Admin" 
             }).OrderByDescending(p=>p.Id).ToList();
 
+            foreach (var item in result)
+            {
+                item.Operator = account.FirstOrDefault(p => p.Id == item.OperatorId)?.FullName;
+            }
+
+            return result;
+        }
+
+        public Inventory GetByProductId(long productId)
+        {
+            return _inventoryContext.Inventory.FirstOrDefault(p => p.ProductId == productId);
         }
     }
 }

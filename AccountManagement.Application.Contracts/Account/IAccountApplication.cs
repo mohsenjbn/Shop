@@ -11,6 +11,7 @@ namespace AccountManagement.Application.Contracts.Account
         OperationResult Login(Login command);
         OperationResult Logout();
         OperationResult ChanagePassword(ChangePassword command);
+        List<AccountViewModel> GetAccounts();
 
     }
 }

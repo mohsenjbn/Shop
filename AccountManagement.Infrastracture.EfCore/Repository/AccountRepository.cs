@@ -45,6 +45,15 @@ namespace AccountManagement.Infrastracture.EfCore.Repository
             return _context.Accounts.Include(p => p.Role).FirstOrDefault(p => p.UserName == username);
         }
 
+        public List<AccountViewModel> GetAccounts()
+        {
+            return _context.Accounts.Select(p =>new AccountViewModel
+            {
+                Id = p.Id,
+                FullName = p.FullName
+            }).ToList();
+        }
+
         public Edit GetDetails(long Id)
         {
             return _context.Accounts.Include(p => p.Role).Select(p => new Edit

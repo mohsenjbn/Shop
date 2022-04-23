@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AccountManagement.Infrastracture.EfCore\AccountManagement.Infrastracture.EfCore.csproj" />
     <ProjectReference Include="..\Sh.Domain\ShopManagement.Domain.csproj" />
   </ItemGroup>
 

@@ -43,6 +43,11 @@ namespace AccountManagement.Application
 
         }
 
+        public List<AccountViewModel> GetAccounts()
+        {
+            return _accountRepository.GetAccounts();
+        }
+
         public OperationResult CreateAccount(Contracts.Account.Create command)
         {
             var operation = new OperationResult();

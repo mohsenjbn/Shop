@@ -1,4 +1,5 @@
 ﻿using _01_framework.Infrastracture;
+using _01_ShopQuery.Contracts.Cart;
 using _01_ShopQuery.Contracts.Product;
 using _01_ShopQuery.Contracts.ProductCategory;
 using _01_ShopQuery.Contracts.Slide;
@@ -8,10 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Sh.Domain.ProductCategoryAgg;
 using ShopiManagement.Application.Contracts.ProductCategory;
 using ShopManagement.Application;
+using ShopManagement.Application.Contracts.Order;
 using ShopManagement.Application.Contracts.Product;
 using ShopManagement.Application.Contracts.ProductPicture;
 using ShopManagement.Application.Contracts.Slide;
 using ShopManagement.Configuration.Permissions;
+using ShopManagement.Domain.OrderAgg;
 using ShopManagement.Domain.ProductAgg;
 using ShopManagement.Domain.ProductPictureAgg;
 using ShopManagement.Domain.SlideAgg;
@@ -33,7 +36,14 @@ namespace ShopManagement.Configuration
             service.AddTransient<ISlideApplication, SlideApplication>();
             service.AddTransient<ISlideRepository, SlideRepository>();
             service.AddTransient<IPermissionExposer, ShopPermissionExposer>();
+            service.AddTransient<ICartCalculatorService, CartCalculatorService>();
+            service.AddTransient<IOrderApplication, OrderApplication>();
+            service.AddTransient<IOrderRepository, OrderRepository>();
 
+
+
+            service.AddTransient<ICartCalculatorService, CartCalculatorService>();
+            service.AddSingleton<ICartService, CartService>();
 
 
             service.AddTransient<ISlideQuery, SlideQuery>();

@@ -1,4 +1,5 @@
-﻿using _01_framework.Domain;
+﻿using System.Net.Sockets;
+using _01_framework.Domain;
 using Invertory.Application.Contracts.Inventory;
 
 namespace InventoryManagement.Domain.InventoryAgg
@@ -9,6 +10,7 @@ namespace InventoryManagement.Domain.InventoryAgg
         List<InventoryViewModel> GetAll(InventorySeacrModel seacrhmodel);
         UpdateInventory GetDetails(long id);
         List<InventoryOperationViewModel> InventoryOperations(long InventoryId);
+        Inventory GetByProductId(long productId);
 
     }
 }

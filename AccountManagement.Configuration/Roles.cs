@@ -5,5 +5,6 @@
         public const string AdminSystem = "3";
         public const string Contentcreation = "4";
         public const string UserSystem = "1";
+        public const string ColleagueUser = "10003";
     }
 }

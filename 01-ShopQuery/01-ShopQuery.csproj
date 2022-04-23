@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AccountManagement.Configuration\AccountManagement.Configuration.csproj" />
     <ProjectReference Include="..\BlogManagement.Infrastracture.EFCore\BlogManagement.Infrastracture.EFCore.csproj" />
     <ProjectReference Include="..\CommantManagement.Infrastracture.EfCore\CommantManagement.Infrastracture.EfCore.csproj" />
     <ProjectReference Include="..\DiscontManagement.Infrastracture.EfCore\DiscontManagement.Infrastracture.EfCore.csproj" />
