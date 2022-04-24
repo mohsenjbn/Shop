@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +21,7 @@
     <ProjectReference Include="..\CommentManagement.infrastracture.Configuration\CommentManagement.infrastracture.Configuration.csproj" />
     <ProjectReference Include="..\DiscountManegmant.Infrastracture.Configoration\DiscountManegmant.Infrastracture.Configoration.csproj" />
     <ProjectReference Include="..\InventoryManagement.Infrastracture.Configuration\InventoryManagement.Infrastracture.Configuration.csproj" />
+    <ProjectReference Include="..\InventoryManagement.Persentation.Api\InventoryManagement.Persentation.Api.csproj" />
     <ProjectReference Include="..\ShopManagement.Configuration\ShopManagement.Configuration.csproj" />
     <ProjectReference Include="..\ShopManagement.Infarstracture.Acl\ShopManagement.Infarstracture.Acl.csproj" />
   </ItemGroup>

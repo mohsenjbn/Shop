@@ -77,11 +77,47 @@ function ChangeCartCount(Id, TotalPrice, Count) {
     let products = $.cookie(cookieName);
     products = JSON.parse(products)
     let ItemIndex = products.findIndex(p => p.id == Id);
-    debugger
+
     products[ItemIndex].count = Count;
     const price = products[ItemIndex].unitPrice
     const newPrice = price * parseInt(Count);
     $(`#${TotalPrice}`).text(newPrice);
     $.cookie(cookieName, JSON.stringify(products), { expires: 2, path: "/" });
     updateCart();
+
+
+    var settings = {
+        "url": "https://localhost:7157/api/Inventory",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+            "productid": Id,
+            "count": Count
+        }),
+    };
+
+    $.ajax(settings).done(function (data) {
+        debugger
+        if (data.isStock == false) {
+            let errorMessage = $("#errorMessage")
+            if ($(`#${Id}`).length == 0) {
+                errorMessage.append(
+                    `<div class="alert alert-info" id="${Id}">محصول${data.productName} از تعداد درخواستی شما در انبار کم تر است</div>
+`
+                );
+            } else {
+                if ($(`#${Id}`).length > 1) {
+                    $(`#${Id}`).remove();
+                }
+            }
+        } else {
+            if (data.isStock == true) {
+                $(`#${Id}`).remove();
+
+            }
+        }
+    });
 }

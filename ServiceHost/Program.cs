@@ -11,6 +11,7 @@ using ShopManagement.Configuration;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using _01_framework.Application.Zarinpal;
+using InventoryManagement.Persentation.Api.Controller;
 using ShopManagement.Domain.Services;
 using ShopManagement.Infarstracture.Acl;
 
@@ -27,7 +28,9 @@ builder.Services.AddRazorPages().
     options.Conventions.AuthorizeAreaFolder("Adminstarator", "/Inventory", "Inventory");
     options.Conventions.AuthorizeAreaFolder("Adminstarator", "/Shop", "Shop");
     //options.Conventions.AuthorizeAreaFolder("Adminstarator", "/Inventory", "Inventory");
-});
+}).AddApplicationPart(typeof(InventoryController).Assembly)
+    .AddNewtonsoftJson();
+
 builder.Services.AddHttpContextAccessor();
 ShopManagementBootstrapper.Configure(builder.Services, ConnectionString);
 DiscountManagementBootStrapper.configore(builder.Services, ConnectionString);
@@ -101,5 +104,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
